@@ -13,13 +13,13 @@ import {
 } from 'react-native';
 
 // Import components
-import Main from './src/Main';
+import Root from './src/main';
 
 export default class CarTaxiBooking extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Main />
+        <Root {...this.props}/>
       </View>
     );
   }
@@ -28,9 +28,6 @@ export default class CarTaxiBooking extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
