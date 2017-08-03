@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import { Container } from 'native-base';
+
+// Import components
+import MapContainer from './MapContainer';
 class Home extends React.Component {
 
   componentDidMount() {
@@ -8,10 +12,16 @@ class Home extends React.Component {
   }
 
   render(){
+    const region = {
+      latitude: 43.653226,
+      longitude: -79.383184,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    }
     return(
-      <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-        <Text>Hello {this.props.name}</Text>
-      </View>
+      <Container>
+        <MapContainer region={region}/>
+      </Container>
     );
   }
 }

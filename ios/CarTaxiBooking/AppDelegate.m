@@ -20,7 +20,7 @@
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  [GMSServices provideAPIKey:@"AIzaSyCGsB_2aW-Eg8QarxYiBpSPw7r8NH4_NM4"];
+  [GMSServices provideAPIKey:@"AIzaSyDUYbTR-3PDWPhgxjENs4yf35g2eHc641s"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"CarTaxiBooking"
