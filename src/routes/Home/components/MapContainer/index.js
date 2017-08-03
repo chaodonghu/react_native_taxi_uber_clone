@@ -2,6 +2,8 @@ import React from 'react';
 import { View } from 'native-base';
 import MapView from 'react-native-maps';
 
+// Import components
+import SearchBox from '../SearchBox/index'
 import styles from './MapContainerStyles.js';
 
 // Stateless component therefore just an arrow function
@@ -19,6 +21,7 @@ export const MapContainer = ({region}) => {
         draggable
       />
       </MapView>
+      <SearchBox/>
     </View>
   )
 }
