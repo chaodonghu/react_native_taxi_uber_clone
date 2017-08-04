@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native';
-let width = Dimensions.get("window").width; // Full width
+var width = Dimensions.get("window").width; // Full width
 
 const styles = {
   searchBox: {

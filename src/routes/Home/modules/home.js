@@ -6,7 +6,9 @@ import { Dimensions } from 'react-native';
 // Constants
 // ----------------------
 const {
-  GET_CURRENT_LOCATION
+  GET_CURRENT_LOCATION,
+  GET_INPUT,
+  TOGGLE_SEARCH_RESULT
 } = constants;
 
 const { width, height } = Dimensions.get("window");
@@ -19,6 +21,8 @@ const LONGITUDE_DELTA = ASPECT_RATIO * LATITUDE_DELTA;
 // ----------------------
 // Actions
 // ----------------------
+
+// Get user's current location
 export function getCurrentLocation(){
 	return(dispatch)=>{
 		navigator.geolocation.getCurrentPosition(
@@ -34,9 +38,27 @@ export function getCurrentLocation(){
 	}
 }
 
+// Get user's iput
+export function getInputData(payload){
+  return{
+    type: GET_INPUT,
+    payload: payload
+  }
+}
+
+// Toggle search result modal
+export function toggleSearchResult(payload){
+  return{
+    type: TOGGLE_SEARCH_RESULT,
+    payload: payload
+  }
+}
+
 // ----------------------
 // Action Handlers
 // ----------------------
+
+// Handle get current location action
 function handleGetCurrentLocation(state, action) {
   return update(state, {
     region: {
@@ -56,12 +78,56 @@ function handleGetCurrentLocation(state, action) {
   })
 }
 
+// Handle get user's input
+function handleGetInputData(state, action) {
+  const { key, value } = action.payload
+  return update(state, {
+    inputData:{
+      [key]:{
+        $set: value
+      }
+    }
+  });
+}
+
+// Handle toggle search result
+// Handle get user's input
+function handleToggleSearchResult(state, action) {
+  if(action.payload === "pickup"){
+    return update(state, {
+      resultTypes:{
+        pickup:{
+          $set: true,
+        },
+        dropoff:{
+          $set: false
+        }
+      }
+    });
+  }
+  if(action.payload === "dropoff"){
+    return update(state, {
+      resultTypes:{
+        pickUp:{
+          $set: false,
+        },
+        dropoff:{
+          $set: true
+        }
+      }
+    });
+  }
+}
+
 const ACTION_HANDLERS = {
-  GET_CURRENT_LOCATION: handleGetCurrentLocation
+  GET_CURRENT_LOCATION: handleGetCurrentLocation,
+  GET_INPUT: handleGetInputData
 }
 
 const initialState = {
-  region: {}
+  region: {},
+  inputData: {},
+  resultTypes: {},
 };
 
 export function HomeReducer (state = initialState, action){
