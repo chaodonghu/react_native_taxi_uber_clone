@@ -3,7 +3,7 @@ let width = Dimensions.get("window").width; // Full width
 
 const styles = {
   searchBox: {
-    top: 60,
+    top: 0,
     position: "absolute",
     width: width
   },
